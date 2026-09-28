@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.sachet-cache/
+*.egg-info/
+build/
+dist/
+demo/out/
+demo/audio/*.mp3
+.pytest_cache/
+.ruff_cache/
