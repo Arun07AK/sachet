@@ -111,7 +111,7 @@ def _to_amount(num: str, unit: str | None) -> float:
     u = (unit or "").lower()
     if u in {"k", "thousand"}:
         value *= 1_000
-    elif u in {"lakh", "lakhs", "lac", "lacs", "l", "lpa"} or u.startswith("lakh") or u.startswith("lac"):
+    elif u in {"lakh", "lakhs", "lac", "lacs", "l", "lpa"} or u.startswith(("lakh", "lac")):
         value *= 100_000
     elif u in {"crore", "crores", "cr"}:
         value *= 10_000_000

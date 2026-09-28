@@ -1,0 +1,17 @@
+{
+  "params": {
+    "engine": "google_news",
+    "q": "Kavera Analytics Pvt Ltd job scam",
+    "gl": "in",
+    "hl": "en"
+  },
+  "response": {
+    "news_results": [
+      {
+        "title": "Kavera Analytics Pvt Ltd fake job scam",
+        "link": "https://news.example.org/kavera",
+        "snippet": "Recruiter impersonation"
+      }
+    ]
+  }
+}

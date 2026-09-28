@@ -1,0 +1,47 @@
+{
+  "params": {
+    "engine": "google",
+    "q": "Kavera Analytics Pvt Ltd",
+    "gl": "in",
+    "hl": "en"
+  },
+  "response": {
+    "knowledge_graph": {
+      "title": "Kavera Analytics Pvt Ltd",
+      "type": "Company",
+      "website": "https://kavera-analytics.in"
+    },
+    "organic_results": [
+      {
+        "title": "Kavera Analytics Pvt Ltd Careers",
+        "link": "https://kavera-analytics.in/careers",
+        "snippet": "Open roles"
+      },
+      {
+        "title": "Kavera Analytics Pvt Ltd fraud warning",
+        "link": "https://kavera-analytics.in/fraud",
+        "snippet": "Beware fake recruiters. Write to hr@kavera-analytics.in"
+      },
+      {
+        "title": "Kavera Analytics Pvt Ltd registration",
+        "link": "https://zaubacorp.com/kavera",
+        "snippet": "Record"
+      },
+      {
+        "title": "Kavera Analytics Pvt Ltd profile 0",
+        "link": "https://example0.org/kavera",
+        "snippet": "Analytics jobs"
+      },
+      {
+        "title": "Kavera Analytics Pvt Ltd profile 1",
+        "link": "https://example1.org/kavera",
+        "snippet": "Analytics jobs"
+      },
+      {
+        "title": "Kavera Analytics Pvt Ltd profile 2",
+        "link": "https://example2.org/kavera",
+        "snippet": "Analytics jobs"
+      }
+    ]
+  }
+}

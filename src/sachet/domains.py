@@ -53,7 +53,7 @@ def host_of(url_or_host: str) -> str:
     if "://" not in text:
         text = "http://" + text
     host = urlparse(text).hostname or ""
-    return host[4:] if host.startswith("www.") else host
+    return host.removeprefix("www.")
 
 
 def registrable(url_or_host: str) -> str:

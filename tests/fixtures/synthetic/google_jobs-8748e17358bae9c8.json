@@ -1,0 +1,27 @@
+{
+  "params": {
+    "engine": "google_jobs",
+    "q": "Analyst Kavera Analytics Pvt Ltd",
+    "location": "India",
+    "gl": "in",
+    "hl": "en"
+  },
+  "response": {
+    "jobs_results": [
+      {
+        "title": "Analyst",
+        "company_name": "Kavera Analytics Pvt Ltd",
+        "via": "Company site",
+        "detected_extensions": {
+          "salary": "\u20b925K-\u20b930K a month"
+        },
+        "apply_options": [
+          {
+            "title": "Apply",
+            "link": "https://kavera-analytics.in/apply"
+          }
+        ]
+      }
+    ]
+  }
+}

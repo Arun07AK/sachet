@@ -1,0 +1,17 @@
+{
+  "params": {
+    "engine": "google",
+    "q": "\"Kavera Analytics Pvt Ltd\" scam OR fraud OR fake job offer",
+    "gl": "in",
+    "hl": "en"
+  },
+  "response": {
+    "organic_results": [
+      {
+        "title": "Fake Kavera Analytics Pvt Ltd offer scam",
+        "link": "https://reddit.com/r/jobs/kavera",
+        "snippet": "Impersonation warning"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "params": {
+    "engine": "google_maps",
+    "q": "Kavera Analytics Pvt Ltd",
+    "type": "search",
+    "location": "Pune",
+    "z": 14,
+    "hl": "en"
+  },
+  "response": {
+    "local_results": [
+      {
+        "title": "Kavera Analytics Pvt Ltd",
+        "link": "https://maps.google.com/kavera",
+        "rating": 4.5,
+        "reviews": 18
+      }
+    ]
+  }
+}

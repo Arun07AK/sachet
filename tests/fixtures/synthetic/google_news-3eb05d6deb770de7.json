@@ -1,0 +1,11 @@
+{
+  "params": {
+    "engine": "google_news",
+    "q": "Zyntrix Careers Hub job scam",
+    "gl": "in",
+    "hl": "en"
+  },
+  "response": {
+    "news_results": []
+  }
+}

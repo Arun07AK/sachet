@@ -1,0 +1,22 @@
+{
+  "params": {
+    "engine": "google",
+    "q": "\"Zyntrix Careers Hub\" scam OR fraud OR fake job offer",
+    "gl": "in",
+    "hl": "en"
+  },
+  "response": {
+    "organic_results": [
+      {
+        "title": "Zyntrix Careers Hub scam",
+        "link": "https://reddit.com/r/jobs/zyntrix",
+        "snippet": "Fake jobs"
+      },
+      {
+        "title": "Zyntrix Careers Hub fraud",
+        "link": "https://voxya.com/zyntrix",
+        "snippet": "Deposit complaint"
+      }
+    ]
+  }
+}

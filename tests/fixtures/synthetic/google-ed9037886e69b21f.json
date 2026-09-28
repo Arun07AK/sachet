@@ -1,0 +1,17 @@
+{
+  "params": {
+    "engine": "google",
+    "q": "\"+91 98765 43210\"",
+    "gl": "in",
+    "hl": "en"
+  },
+  "response": {
+    "organic_results": [
+      {
+        "title": "Fake Kavera Analytics Pvt Ltd recruiter scam",
+        "link": "https://reddit.com/r/jobs/phone",
+        "snippet": "This contact is reported"
+      }
+    ]
+  }
+}
