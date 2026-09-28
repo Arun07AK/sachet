@@ -1,0 +1,10 @@
+{
+ "s00_title": "This is Sachet, an AI agent that checks a job or internship offer before you pay or share documents. It is built for Indian students, and it runs locally with live SerpApi search.",
+ "s01_paste": "Here is an offer letter that claims to be from Infosys. It came from a different domain, it skips the interview, and it asks for a refundable verification fee. I paste it in and start the investigation.",
+ "s02_timeline": "The agent extracts the company, the recruiter domain, the pay and the fee, then plans its searches. Each SerpApi call streams into the timeline: Google Search for the company footprint, a probe of the recruiter domain, complaints, Google Maps, Google Jobs and Google News.",
+ "s03_verdict": "The verdict is likely scam. The knowledge graph gives Infosys's real domain, so the recruiter domain is flagged as an imitation. Every finding links to the search result it came from, and no link is invented.",
+ "s04_genuine": "Now a real looking internship offer from Razorpay. The recruiter writes from the official domain, the company has a Maps listing and public job listings, and there is no fee. Sachet says it looks genuine, and still tells you to verify on the careers page.",
+ "s05_task": "Last, a part time hotel review task on Telegram. The text rules catch the prepaid deposit and the task wording, and search finds almost no footprint for the agency. The next steps point to the 1930 cyber crime helpline.",
+ "s06_terminal": "The same agent runs from the command line and as an MCP tool for Claude Desktop or Cursor. Responses are cached and budgeted, so the free SerpApi plan goes a long way, and the test suite runs fully offline.",
+ "s07_close": "Sachet: check the offer, not just the excitement. The code and setup steps are on GitHub."
+}
