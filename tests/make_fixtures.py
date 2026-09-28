@@ -42,7 +42,8 @@ def main():
                              "detected_extensions": {"salary": "₹25K-₹30K a month"},
                              "apply_options": [{"title": "Apply", "link": f"{site}/apply"}]}]})
     write({"engine": "google", "q": '"kavera-analytics-careers.in"'}, {"organic_results": []})
-    write({"engine": "google", "q": '"+91 98765 43210"'}, {"organic_results": [
+    write({"engine": "google", "q": '"unknown-zyntrix.in"'}, {"organic_results": []})
+    write({"engine": "google", "q": '"98765 43210" OR "9876543210"'}, {"organic_results": [
         {"title": "Fake Kavera Analytics Pvt Ltd recruiter scam",
          "link": "https://reddit.com/r/jobs/phone", "snippet": "This contact is reported"}]})
     scam = "Zyntrix Careers Hub"

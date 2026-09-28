@@ -1,0 +1,11 @@
+{
+  "params": {
+    "engine": "google",
+    "q": "\"unknown-zyntrix.in\"",
+    "gl": "in",
+    "hl": "en"
+  },
+  "response": {
+    "organic_results": []
+  }
+}

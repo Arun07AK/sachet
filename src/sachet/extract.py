@@ -13,7 +13,7 @@ from .models import Money, Offer
 EMAIL_RE = re.compile(r"\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b")
 URL_RE = re.compile(
     r"\b(?:https?://[^\s<>\"')\]]+|www\.[^\s<>\"')\]]+|"
-    r"(?<![@\w.])[a-z0-9][a-z0-9\-]{1,62}\.(?:com|in|co\.in|org|net|io|ai|jobs|careers|work|xyz|site|online|info)"
+    r"(?<![@\w.\-])[a-z0-9][a-z0-9\-]{1,62}\.(?:com|in|co\.in|org|net|io|ai|jobs|careers|work|xyz|site|online|info)"
     r"(?:/[^\s<>\"')\]]*)?)",
     re.IGNORECASE,
 )
@@ -84,7 +84,7 @@ _COMPANY_STOP = {
 }
 
 ROLE_RE = re.compile(
-    r"(?:position|role|post|profile|designation|job title|opening)\s*(?:of|:|\-|as|for)?\s*"
+    r"(?:position|role|post|profile|designation|job title|opening)\s*(?:of|:|\-|as|for)\s*"
     r"(?:an?\s+|the\s+)?([A-Za-z][A-Za-z /&+\-]{2,50}?)(?=\s*(?:[.,;\n(]|with|at|in|on|for|$))",
     re.IGNORECASE,
 )
@@ -193,7 +193,9 @@ def extract_role(text: str) -> str | None:
     m = ROLE_RE.search(text)
     if m:
         role = m.group(1).strip(" .,-")
-        if 2 < len(role) <= 50 and role.lower() not in {"the", "a", "our", "this"}:
+        first = role.split()[0].lower() if role.split() else ""
+        if (2 < len(role) <= 50 and role.lower() not in {"the", "a", "our", "this"}
+                and first not in {"in", "at", "on", "with", "from", "to", "is", "has"}):
             return role
     m = ROLE_TITLE_RE.search(text)
     return m.group(1).strip() if m else None

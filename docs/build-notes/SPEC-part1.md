@@ -105,8 +105,8 @@ Each check is a function `(ctx) -> list[Finding]` where `ctx` is `Investigation`
    MEDIUM "No Google Maps listing matches the stated office".
 7. `job_listing`: gateway.search google_jobs q=f"{role} {company}" location India. Job whose
    company_name matches company tokens: POSITIVE "Role is publicly listed" with `via` and first
-   apply link. Parse salary from detected_extensions.salary (e.g. "₹25K–₹30K a month",
-   "3–4.5 LPA"); if offer.offered_monthly_inr > 3x the listed monthly max: HIGH "Offered pay is far
+   apply link. Parse salary from detected_extensions.salary (e.g. "₹25K-₹30K a month",
+   "3-4.5 LPA"); if offer.offered_monthly_inr > 3x the listed monthly max: HIGH "Offered pay is far
    above public listings". No matching listing: LOW (weak signal, say so).
 8. `domain_probe` (follow-up only): web_search(f'"{domain}"') for a suspicious corporate domain.
    No results or scam hits: HIGH "Domain has no independent presence" / "Domain appears in scam

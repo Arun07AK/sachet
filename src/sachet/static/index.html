@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sachet | Job offer check</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header><div class="brand">Sachet <span class="dot">●</span></div><p>Check a job offer before you pay or share documents</p></header>
+  <main>
+    <section class="card input-card">
+      <div class="eyebrow">YOUR OFFER</div><h1>Investigate an offer</h1>
+      <p class="muted">Paste an email, offer letter, SMS or chat message. Sachet checks public evidence and shows its sources.</p>
+      <div id="banner" class="banner" hidden>No SerpApi key is configured. Set SERPAPI_API_KEY to enable live searches.</div>
+      <label for="offer">Offer text</label>
+      <textarea id="offer" placeholder="Paste the full offer here, including contact details and links"></textarea>
+      <div class="examples"><span>Try an example</span><div id="example-chips"></div></div>
+      <div class="controls"><label for="budget">Search budget</label><select id="budget"><option>4</option><option selected>8</option><option>12</option></select><button id="investigate">Investigate offer <span>→</span></button></div>
+    </section>
+    <section class="results">
+      <div class="card timeline-card"><div class="eyebrow">LIVE INVESTIGATION</div><h2>Agent timeline</h2><div id="timeline" class="timeline"><p class="muted">Searches and checks will appear here as they run.</p></div></div>
+      <div id="verdict" class="card verdict-card" hidden></div>
+      <div id="entities" class="card" hidden></div>
+      <div id="next" class="card" hidden></div>
+    </section>
+  </main>
+  <footer>Sachet uses public search results. Verify important details directly with the employer.</footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>

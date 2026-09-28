@@ -128,7 +128,12 @@ def contact_trace(ctx):
     contacts = ctx.offer.phones[:1] + [e for e in ctx.offer.emails if domains.is_free_mail(e.split("@")[-1])][:1]
     findings = []
     for contact in contacts:
-        data = ctx.tools.web_json(f'"{contact}"')
+        digits = re.sub(r"\D", "", contact)
+        if contact.startswith("+91") and len(digits) == 12:
+            digits = digits[2:]
+        query = (f'"{digits[:5]} {digits[5:]}" OR "{digits}"'
+                 if len(digits) == 10 else f'"{contact}"')
+        data = ctx.tools.web_json(query)
         for item in _items(data, "organic_results"):
             text = item.get("title", "") + " " + item.get("snippet", "")
             if _SCAM.search(text):

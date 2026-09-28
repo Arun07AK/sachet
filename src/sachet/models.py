@@ -119,6 +119,7 @@ class Report:
     summary: str
     mode: str = "rules"
     budget: int = 0
+    dropped_llm_findings: int = 0
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -129,6 +130,7 @@ class Report:
             "official_domain": self.official_domain,
             "mode": self.mode,
             "budget": self.budget,
+            "dropped_llm_findings": self.dropped_llm_findings,
             "searches_used": sum(1 for c in self.calls if not c.cached and c.ok),
             "offer": self.offer.to_dict(),
             "findings": [f.to_dict() for f in self.findings],

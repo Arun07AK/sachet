@@ -48,7 +48,9 @@ class Agent:
             refined = llm.refine(offer)
             if isinstance(refined, Offer):
                 offer = refined
-        gateway = self.gateway or SerpGateway(budget=budget)
+        gateway = self.gateway or SerpGateway(budget=budget if budget is not None else 8)
+        if self.gateway is not None and budget is not None:
+            gateway.budget = budget
         old_callback = gateway.on_call
 
         def searched(call):
@@ -71,6 +73,7 @@ class Agent:
                    "news": "Check news reports", "domain_probe": "Investigate a suspicious domain"}
         search_steps = {"footprint", "scam_reports", "contact_trace", "office_maps",
                         "job_listing", "news", "domain_probe"}
+        replanned = set()
         done = set()
         index = 0
         while index < len(plan):
@@ -114,9 +117,9 @@ class Agent:
                 except (RuntimeError, ValueError, OSError) as exc:
                     status, reason = "failed", str(exc)
             step = {"name": name, "reason": reason, "status": status,
-                    "added_by": "replan" if name == "domain_probe" else "plan"}
+                    "added_by": "replan" if name in replanned else "plan"}
             ctx.steps.append(step)
-            ctx.emit({"type": "step", **step})
+            ctx.emit({"type": "step", **step, "searches_left": gateway.remaining})
             if name == "text" and not offer.company:
                 corp = next((d for d in offer.email_domains if not domains.is_free_mail(d)), None)
                 if corp:
@@ -124,21 +127,39 @@ class Agent:
             if name == "footprint" and ctx.footprint_size == "none" and "contact_trace" in plan[index:]:
                 plan.remove("contact_trace")
                 plan.insert(index, "contact_trace")
-            if name == "domain_consistency" and ctx.suspicious_domains:
+                replanned.add("contact_trace")
+            if name == "footprint" and not ctx.official_domain:
+                offered_domains = set(offer.email_domains)
+                offered_domains.update(domains.registrable(url) for url in offer.urls)
+                ctx.suspicious_domains.update(
+                    d for d in offered_domains if d and not domains.is_free_mail(d)
+                    and not domains.is_third_party(d)
+                )
+                if ctx.suspicious_domains and "domain_probe" not in plan[index:]:
+                    plan.insert(index, "domain_probe")
+                    reasons["domain_probe"] = "official site not found, probing recruiter domain"
+                    replanned.add("domain_probe")
+            if (name == "domain_consistency" and ctx.suspicious_domains
+                    and "domain_probe" not in plan[index:] and "domain_probe" not in done):
                 plan.insert(index, "domain_probe")
+                replanned.add("domain_probe")
             if name == "scam_reports" and ctx.impersonation_risk and "contact_trace" in plan[index:]:
                 matched = any(f.check == "domain_consistency" and f.severity == Severity.POSITIVE
                               for f in ctx.findings)
                 if not matched:
                     plan.remove("contact_trace")
                     plan.insert(index, "contact_trace")
+                    replanned.add("contact_trace")
+        dropped = 0
         if llm and hasattr(llm, "investigate"):
             try:
                 extra = llm.investigate(ctx) or []
                 for finding in extra:
                     if not isinstance(finding, Finding):
                         continue
-                    if any(source.url not in gateway.seen_urls for source in finding.sources):
+                    if not finding.sources or any(source.url not in gateway.seen_urls
+                                                  for source in finding.sources):
+                        dropped += 1
                         continue
                     if finding.severity == Severity.CRITICAL:
                         finding.severity = Severity.HIGH
@@ -153,6 +174,7 @@ class Agent:
             value = 70
         report = Report(offer, ctx.findings, value, label, human, ctx.official_domain,
                         gateway.calls, [], "", "llm" if llm else "rules", gateway.budget)
+        report.dropped_llm_findings = dropped
         report.next_steps = scoring.next_steps(report)
         report.summary = scoring.summary_text(report)
         if llm and hasattr(llm, "summarize"):

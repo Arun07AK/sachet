@@ -36,6 +36,7 @@ class SerpGateway:
         self.defaults = {"gl": "in", "hl": "en"} if defaults is None else defaults
         self.calls: list[SearchCall] = []
         self.seen_urls: set[str] = set()
+        self.url_titles: dict[str, str] = {}
         self._used = 0
         self.last_error: Exception | None = None
 
@@ -88,6 +89,8 @@ class SerpGateway:
                 if (key.lower() in {"link", "website", "url"} and isinstance(child, str)
                         and urlparse(child).scheme in {"http", "https"}):
                     self.seen_urls.add(child)
+                    self.url_titles.setdefault(child, str(value.get("title") or value.get("name")
+                                                         or child))
                 self._urls(child)
         elif isinstance(value, list):
             for child in value:

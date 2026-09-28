@@ -162,7 +162,7 @@ def test_planner_budget_skips():
     with patch.object(serpapi, "Client", lambda api_key: Client()):
         gw = SerpGateway(api_key="x", budget=1, cache_dir=None)
         agent = Agent(gw)
-        agent.run(Offer("", company=COMPANY, role="Analyst"))
+        agent.run(Offer("", company=COMPANY, role="Analyst"), budget=1)
     assert any(s["status"] == "skipped" and s["reason"] == "search budget used up"
                for s in agent.last_investigation.steps)
 
